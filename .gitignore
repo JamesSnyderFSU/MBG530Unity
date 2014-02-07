@@ -1,0 +1,15 @@
+############
+# UNITY 3D #
+############
+
+# All Platforms
+Library
+Temp
+*.csproj
+*.pidb
+*.unityproj
+*.sln
+*.userprefs
+
+# Remember to [git add "*"] (with quotation marks) when adding new
+# files, otherwise git will ignore them
