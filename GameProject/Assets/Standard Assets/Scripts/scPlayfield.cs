@@ -5,8 +5,8 @@ public class scPlayfield : MonoBehaviour {
 
 	// Set speeds for texture scroll
 
-	float speedLayerStar = 1.0f;
-	float speedLayerDust = 2.0f;
+	public float speedLayerStar = 1.0f;
+	public float speedLayerDust = 2.0f;
 
 	// Use this for initialization
 	void Start () {
