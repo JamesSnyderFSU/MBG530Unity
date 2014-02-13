@@ -34,6 +34,7 @@ public class scAsteroid : MonoBehaviour {
 			moveAsteroid.z = rangeStart;
 			moveAsteroid.x = Random.Range (-14, 14);
 			SetSpeed();
+			scScore.Increment();
 				}
 
 		// Perform movement
