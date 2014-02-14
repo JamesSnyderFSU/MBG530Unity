@@ -44,16 +44,73 @@ public class scAsteroid : MonoBehaviour {
 	
 	}
 
+	// Detect collision between asteroid and player
 	void OnCollisionEnter(Collision hitPlayer) {
 		if (hitPlayer.gameObject.name == "colBoxShipPlayer") {
-			scScore.GameOver ();
 			scPlayMove.DestroyShip ();
-			}
-		}
 
+			if (scScore.GetScore() > PlayerPrefs.GetInt ("High Score") ) {
+				scScore.HighScore ();
+				NewHighScore ();
+			} else {
+				scScore.GameOver ();
+			}
+
+			WaitForRestart();
+			Application.LoadLevel ("sceneMenu");
+		}
+	}
+
+	// Set random speed for next asteroid run
 	void SetSpeed() {
 		float randomSpeed = Random.Range (25, 100);
 		asteroidSpeed = 1.0f * (randomSpeed / 100);
 		}
+
+	// Handle new high score and GPS information if new high score is earned
+	// Note on GPS:  Would need to write plugin to translate GPS lat/long into useful location data, Unity Pro needed for plugins
+	void NewHighScore() {
+		// Write high score to player prefs
+		PlayerPrefs.SetInt ("High Score", scScore.GetScore ());
+
+		// Handle GPS Location here, save to player prefs
+		string gpsInfo = "";
+
+		if (Input.location.isEnabledByUser == true) {
+			Input.location.Start ();
+
+			int waitForService = 20;
+			while (Input.location.status == LocationServiceStatus.Initializing && waitForService > 0) {
+				Waiting ();
+				waitForService -= 1;
+			}
+
+			if (waitForService < 0) {
+				gpsInfo = "(GPS timed out)";
+			} else {
+				if (Input.location.status == LocationServiceStatus.Failed) {
+					gpsInfo = "(GPS location failed)";
+				} else {
+					gpsInfo = "(at " + Input.location.lastData.latitude + " lat";
+					gpsInfo += " by " + Input.location.lastData.longitude + " long)";
+				}
+			}
+
+		} else {
+			gpsInfo = "(GPS not enabled)";
+		}
+
+		// Write GPS data to player prefs
+		PlayerPrefs.SetString ("High Loc", gpsInfo);
+	}
+
+	// Wait method for GPS initialization
+	IEnumerator Waiting() {
+		yield return new WaitForSeconds(1);
+	}
+
+	IEnumerator WaitForRestart() {
+		yield return new WaitForSeconds(5);
+	}
 
 }

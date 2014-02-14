@@ -51,7 +51,7 @@ public class scPlayMove : MonoBehaviour {
 
 	void HideShip() {
 		Vector3 shipHide = transform.position;
-		shipHide.z = -16f;
+		shipHide.z = -50f;
 		transform.position = shipHide;
 		}
 

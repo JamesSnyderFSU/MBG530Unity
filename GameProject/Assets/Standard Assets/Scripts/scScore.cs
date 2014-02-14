@@ -17,7 +17,7 @@ public class scScore : MonoBehaviour {
 
 	// Set game over variables
 	static bool gameOver = false;
-	private string gameOverText = "Game Over";
+	static string gameOverText = "Game Over";
 
 	// Use this for initialization
 	void Start () {
@@ -45,7 +45,17 @@ public class scScore : MonoBehaviour {
 		}
 
 	public static void GameOver() {
+		gameOverText = "Game Over";
 		gameOver = true;
+		}
+
+	public static int GetScore() {
+		return score;
+		}
+
+	public static void HighScore() {
+		gameOver = true;
+		gameOverText = "New High Score!";
 		}
 
 }

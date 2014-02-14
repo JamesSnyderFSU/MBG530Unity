@@ -6,6 +6,8 @@ public class scMenuMain : MonoBehaviour {
 	// Set public variable to include texture for logo
 
 	public Texture2D txMainLogo;
+	public GUIStyle scoreHigh;
+	public GUIStyle scoreLoc;
 
 	// Set dynamic object positions
 
@@ -30,6 +32,16 @@ public class scMenuMain : MonoBehaviour {
 		if(GUI.Button (new Rect(btposLeft, btposTop + (btHeight * 3), btWidth, btHeight), "Quit Game")) {
 			// End Game
 			Application.Quit();
+		}
+
+		if (GUI.Button (new Rect (btposLeft, btposTop + (btHeight * 2), btWidth, btHeight), "Reset Data")) {
+			PlayerPrefs.DeleteAll();
+		}
+
+		if (PlayerPrefs.GetInt ("High Score") > 0) {
+			string highScoreShow = "";
+			highScoreShow = "High Score of " + PlayerPrefs.GetInt ("High Score") + " earned at " + PlayerPrefs.GetString ("High Loc") + ".";
+			GUI.Label (new Rect(Screen.width / 2, btposTop - (btHeight * 2), btWidth, btHeight), highScoreShow, scoreHigh);
 		}
 
 	}
