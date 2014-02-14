@@ -20,6 +20,6 @@ public class scScore : MonoBehaviour {
 		}
 
 	public static void Increment() {
-		score += 10;
+		score += 1;
 		}
 }
