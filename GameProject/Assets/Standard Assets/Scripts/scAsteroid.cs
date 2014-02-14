@@ -4,7 +4,7 @@ using System.Collections;
 public class scAsteroid : MonoBehaviour {
 
 	float rangeStart = 20.0f;
-	float rangeEnd = -20.0f;
+	float rangeEnd = -16.0f;
 	float asteroidSpeed = 1.0f;
 
 	// Use this for initialization

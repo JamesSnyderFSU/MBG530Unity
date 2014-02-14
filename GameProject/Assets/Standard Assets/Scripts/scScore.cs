@@ -3,7 +3,13 @@ using System.Collections;
 
 public class scScore : MonoBehaviour {
 
-	static int score;
+	public GUIStyle styScore;
+
+	private float posScore = (Screen.height / 20);
+	private float lblWidth = (Screen.width / 8);
+	private float lblHeight = (Screen.width / 8);
+
+	static int score = 0;
 
 	// Use this for initialization
 	void Start () {
@@ -16,7 +22,7 @@ public class scScore : MonoBehaviour {
 	}
 
 	void OnGUI() {
-
+		GUI.Label (new Rect ((Screen.width - posScore - lblWidth), posScore, lblWidth, lblHeight), score.ToString (), styScore);
 		}
 
 	public static void Increment() {
