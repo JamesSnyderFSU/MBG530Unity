@@ -31,4 +31,5 @@ public class scPlayfield : MonoBehaviour {
 		renderer.materials[1].SetTextureOffset("_MainTex", new Vector2(0.0f, offsetLayerDust));
 
 	}
+
 }

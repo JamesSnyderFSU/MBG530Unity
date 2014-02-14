@@ -4,7 +4,7 @@ using System.Collections;
 public class scAsteroid : MonoBehaviour {
 
 	float rangeStart = 20.0f;
-	float rangeEnd = -16.0f;
+	float rangeEnd = -15.0f;
 	float asteroidSpeed = 1.0f;
 
 	// Use this for initialization
@@ -31,19 +31,29 @@ public class scAsteroid : MonoBehaviour {
 
 		// If asteroid goes beyond range, move to beginning of the field to new random spot
 		if (moveAsteroid.z < rangeEnd) {
+			if (scPlayMove.shipDestroyed == false) {
+				scScore.Increment();
+			}
 			moveAsteroid.z = rangeStart;
 			moveAsteroid.x = Random.Range (-14, 14);
 			SetSpeed();
-			scScore.Increment();
-				}
+			}
 
 		// Perform movement
 		transform.position = moveAsteroid;
 	
 	}
 
+	void OnCollisionEnter(Collision hitPlayer) {
+		if (hitPlayer.gameObject.name == "colBoxShipPlayer") {
+			scScore.GameOver ();
+			scPlayMove.DestroyShip ();
+			}
+		}
+
 	void SetSpeed() {
 		float randomSpeed = Random.Range (25, 100);
 		asteroidSpeed = 1.0f * (randomSpeed / 100);
 		}
+
 }
