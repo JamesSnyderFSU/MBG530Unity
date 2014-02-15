@@ -8,6 +8,9 @@ public class scAsteroid : MonoBehaviour {
 	float rangeEnd = -15.0f;
 	float asteroidSpeed = 1.0f;
 
+	// Set sound clip
+	public AudioClip shipExplode;
+
 	// Wait timer for GPS intialization
 	static int waitForService = 0;
 
@@ -52,6 +55,7 @@ public class scAsteroid : MonoBehaviour {
 	void OnCollisionEnter(Collision hitPlayer) {
 		if (hitPlayer.gameObject.name == "colBoxShipPlayer") {
 			scPlayMove.DestroyShip ();
+			AudioSource.PlayClipAtPoint(shipExplode, gameObject.transform.position);
 
 			if (scScore.GetScore() > PlayerPrefs.GetInt ("High Score") ) {
 				scScore.HighScore ();

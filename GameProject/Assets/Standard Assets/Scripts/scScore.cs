@@ -37,7 +37,7 @@ public class scScore : MonoBehaviour {
 
 		// Game over display
 		if (gameOver == true) {
-			GUI.Label (new Rect (((Screen.width / 2) - lblWidth), ((Screen.height / 2) - lblHeight), lblWidth, lblHeight), gameOverText, styGameOver);
+			GUI.Label (new Rect (0, ((Screen.height / 2) - lblHeight), Screen.width, lblHeight), gameOverText, styGameOver);
 			}
 		}
 
