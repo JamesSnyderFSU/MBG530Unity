@@ -6,6 +6,9 @@ public class scPlayMove : MonoBehaviour {
 	// Set ship state
 	public static bool shipDestroyed = false;
 
+	// Set explosion particle
+	public GameObject partExplode;
+
 	// Set ship variables
 
 	private float speed = 1.0f;
@@ -51,7 +54,15 @@ public class scPlayMove : MonoBehaviour {
 		}
 
 	void HideShip() {
+		// Get ship's current position
 		Vector3 shipHide = transform.position;
+		Vector3 showParticle = transform.position;
+
+		// Display particle explosion
+		GameObject showExplode = Instantiate (partExplode, showParticle, transform.rotation) as GameObject;
+		Destroy (showExplode, 1.5f);
+
+		// Move ship offscreen
 		shipHide.z = -50f;
 		transform.position = shipHide;
 		}
