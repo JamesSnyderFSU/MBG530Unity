@@ -91,8 +91,8 @@ public class scAsteroid : MonoBehaviour {
 				if (Input.location.status == LocationServiceStatus.Failed) {
 					gpsInfo = "(GPS location failed)";
 				} else {
-					gpsInfo = "(at " + Input.location.lastData.latitude + " lat";
-					gpsInfo += " by " + Input.location.lastData.longitude + " long)";
+					gpsInfo = Input.location.lastData.latitude + " lat";
+					gpsInfo += " by " + Input.location.lastData.longitude + " long";
 				}
 			}
 

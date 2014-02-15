@@ -14,6 +14,7 @@ public class scPlayMove : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		shipDestroyed = false;
 		ResetShip ();
 	}
 	

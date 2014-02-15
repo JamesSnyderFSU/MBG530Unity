@@ -7,7 +7,6 @@ public class scMenuMain : MonoBehaviour {
 
 	public Texture2D txMainLogo;
 	public GUIStyle scoreHigh;
-	public GUIStyle scoreLoc;
 
 	// Set dynamic object positions
 
@@ -34,7 +33,7 @@ public class scMenuMain : MonoBehaviour {
 			Application.Quit();
 		}
 
-		if (GUI.Button (new Rect (btposLeft, btposTop + (btHeight * 2), btWidth, btHeight), "Reset Data")) {
+		if (GUI.Button (new Rect (btposLeft, btposTop + (btHeight * 1.75f), btWidth, btHeight), "Reset Data")) {
 			PlayerPrefs.DeleteAll();
 		}
 

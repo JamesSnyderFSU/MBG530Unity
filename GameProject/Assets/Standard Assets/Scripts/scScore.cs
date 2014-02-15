@@ -22,6 +22,7 @@ public class scScore : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		score = 0;
+		gameOver = false;
 	}
 	
 	// Update is called once per frame
