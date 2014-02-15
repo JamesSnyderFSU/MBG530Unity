@@ -3,9 +3,13 @@ using System.Collections;
 
 public class scAsteroid : MonoBehaviour {
 
+	// Initialize asteroid variables
 	float rangeStart = 20.0f;
 	float rangeEnd = -15.0f;
 	float asteroidSpeed = 1.0f;
+
+	// Wait timer for GPS intialization
+	static int waitForService = 0;
 
 	// Use this for initialization
 	void Start () {
@@ -56,8 +60,7 @@ public class scAsteroid : MonoBehaviour {
 				scScore.GameOver ();
 			}
 
-			WaitForRestart();
-			Application.LoadLevel ("sceneMenu");
+			StartCoroutine (WaitForRestart ());
 		}
 	}
 
@@ -79,10 +82,9 @@ public class scAsteroid : MonoBehaviour {
 		if (Input.location.isEnabledByUser == true) {
 			Input.location.Start ();
 
-			int waitForService = 20;
+			waitForService = 20;
 			while (Input.location.status == LocationServiceStatus.Initializing && waitForService > 0) {
-				Waiting ();
-				waitForService -= 1;
+				StartCoroutine(Waiting ());
 			}
 
 			if (waitForService < 0) {
@@ -107,10 +109,12 @@ public class scAsteroid : MonoBehaviour {
 	// Wait method for GPS initialization
 	IEnumerator Waiting() {
 		yield return new WaitForSeconds(1);
+		waitForService -= 1;
 	}
 
 	IEnumerator WaitForRestart() {
 		yield return new WaitForSeconds(5);
+		Application.LoadLevel ("sceneMenu");
 	}
 
 }

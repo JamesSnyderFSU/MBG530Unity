@@ -40,7 +40,7 @@ public class scMenuMain : MonoBehaviour {
 		if (PlayerPrefs.GetInt ("High Score") > 0) {
 			string highScoreShow = "";
 			highScoreShow = "High Score of " + PlayerPrefs.GetInt ("High Score") + " earned at " + PlayerPrefs.GetString ("High Loc") + ".";
-			GUI.Label (new Rect(Screen.width / 2, btposTop - (btHeight * 2), btWidth, btHeight), highScoreShow, scoreHigh);
+			GUI.Label (new Rect(0, btposTop - (btHeight * 2), Screen.width, btHeight), highScoreShow, scoreHigh);
 		}
 
 	}
